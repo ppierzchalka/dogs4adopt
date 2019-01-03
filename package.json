@@ -14,5 +14,15 @@
     "express": "^4.16.4",
     "hbs": "^4.0.1",
     "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.4.4",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.8",
+    "gulp": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-watch": "^5.0.1"
   }
 }
