@@ -12,10 +12,10 @@ app.set('view engine', 'hbs');
 const menuPaths = [{title:'Home',path:'/'},{title:'About',path:'/about'}];
 
 // enabled file write
-setInterval(() => {
-  merger.readAndMerge();
-  console.log('Reading and merging')
-}, 604800000)
+// setInterval(() => {
+//   merger.readAndMerge();
+//   console.log('Reading and merging')
+// }, 604800000)
 
 const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,2);
 
