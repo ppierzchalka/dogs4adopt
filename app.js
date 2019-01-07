@@ -1,39 +1,23 @@
 const fs = require('fs');
-const axios = require('axios');
 const express = require('express');
 const path = require("path");
 const hbs = require('hbs');
-const src = "https://secure-inlet-25572.herokuapp.com";
+const merger = require('./file-merger.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));
 hbs.registerPartials(__dirname + '/views/partials');
-
 app.set('view engine', 'hbs');
+const menuPaths = [{title:'Home',path:'/'},{title:'About',path:'/about'}];
 
-const menuPaths = [{
-  title: 'Home',
-  path: '/'
-}, {
-  title: 'About',
-  path: '/about'
-}];
+// enabled file write
+setInterval(() => {
+  merger.readAndMerge();
+  console.log('Reading and merging')
+}, 604800000)
 
-async function getSrc(src) {
-  const fetched = await axios.get(src);
-  return fetched.data.slice(5, 10);
-}
-
-getSrc(src)
-  .then(function(res) {
-    fs.writeFileSync('dogs.json', JSON.stringify(res));
-  })
-  .catch(function(err) {
-    console.log(err)
-  })
-
-  const data = JSON.parse(fs.readFileSync('dogs.json'));
+const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,2);
 
 hbs.registerHelper('displayDogs', function(dog) {
   return new hbs.SafeString(
@@ -64,6 +48,11 @@ app.get('/about', (req, res) => {
     menu: menuPaths
   });
 });
+
+app.get('/api', (req, res, next) => {
+  const data = JSON.parse(fs.readFileSync('./public/complete.json'));
+  res.json(data);
+})
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)

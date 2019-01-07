@@ -11,9 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "doasync": "^2.0.1",
     "express": "^4.16.4",
     "hbs": "^4.0.1",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "puppeteer": "^1.11.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.4",
