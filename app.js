@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 const menuPaths = [{title:'Home',path:'/'},{title:'About',path:'/about'}];
+const shelters = ['Lodz','Jelenia Gora','Dlozyna Gorna']
 
 // enabled file write
 // setInterval(() => {
@@ -32,6 +33,20 @@ hbs.registerHelper('displayDogs', function(dog) {
   )
 });
 
+function generateSubPages(list) {
+  list.forEach(shelter => {
+    menuPaths.push({title: shelter, path: `/${encodeURIComponent(shelter)}`})
+    app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
+      res.render('index.hbs', {
+        pageTitle: `Schronisko ${shelter}`,
+        pathToRender: 'homepage',
+        menu: menuPaths,
+        dogs: data.filter(dog => dog.location === shelter)
+      });
+    });
+  })
+}
+
 app.get('/', (req, res) => {
   res.render('index.hbs', {
     pageTitle: 'Dogs4dopt',
@@ -53,6 +68,8 @@ app.get('/api', (req, res, next) => {
   const data = JSON.parse(fs.readFileSync('./public/complete.json'));
   res.json(data);
 })
+
+generateSubPages(shelters);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)
