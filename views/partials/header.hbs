@@ -3,4 +3,8 @@
 	{{#each menu}}
 	<li><a href={{this.path}}>{{this.title}}</a></li>
   {{/each}}
+	<form method="get" action="/search">
+	    <input type="text" name="name">
+	    <input type="submit">
+	</form>
 </header>

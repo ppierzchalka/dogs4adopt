@@ -6,3 +6,9 @@ It will allow user to search dogs for adoption in desired area, without visiting
 ### Installation & Running
 
 App is in early stage of development, thus this section is not available now.
+
+### TODO
+
+-Design & implement frontend
+-Implement Geolocalization
+-Add more shelters

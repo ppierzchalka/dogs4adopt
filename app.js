@@ -18,11 +18,11 @@ const shelters = ['Lodz','Jelenia Gora','Dlozyna Gorna']
 //   console.log('Reading and merging')
 // }, 604800000)
 
-const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,2);
+const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,20);
 
 hbs.registerHelper('displayDogs', function(dog) {
   return new hbs.SafeString(
-    `<div>
+    `<div class="test3">
     <a href=${this.link} target="_blank">
     <h3 class="name">${this.name}</h3>
     <img src=${this.image} alt=${this.name} />
@@ -33,7 +33,7 @@ hbs.registerHelper('displayDogs', function(dog) {
   )
 });
 
-function generateSubPages(list) {
+function generateShelterPages(list) {
   list.forEach(shelter => {
     menuPaths.push({title: shelter, path: `/${encodeURIComponent(shelter)}`})
     app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
@@ -46,6 +46,15 @@ function generateSubPages(list) {
     });
   })
 }
+
+app.get('/search', function(req, res) {
+      res.render('index.hbs', {
+        pageTitle: 'Dogs4dopt',
+        pathToRender: 'homepage',
+        menu: menuPaths,
+        dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
+      });
+});
 
 app.get('/', (req, res) => {
   res.render('index.hbs', {
@@ -69,7 +78,7 @@ app.get('/api', (req, res, next) => {
   res.json(data);
 })
 
-generateSubPages(shelters);
+generateShelterPages(shelters);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)
