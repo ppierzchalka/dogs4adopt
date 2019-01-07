@@ -47,15 +47,6 @@ function generateShelterPages(list) {
   })
 }
 
-app.get('/search', function(req, res) {
-      res.render('index.hbs', {
-        pageTitle: 'Dogs4dopt',
-        pathToRender: 'homepage',
-        menu: menuPaths,
-        dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
-      });
-});
-
 app.get('/', (req, res) => {
   res.render('index.hbs', {
     pageTitle: 'Dogs4dopt',
@@ -71,6 +62,15 @@ app.get('/about', (req, res) => {
     pathToRender: 'about',
     menu: menuPaths
   });
+});
+
+app.get('/search', function(req, res) {
+      res.render('index.hbs', {
+        pageTitle: 'Dogs4dopt',
+        pathToRender: 'homepage',
+        menu: menuPaths,
+        dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
+      });
 });
 
 app.get('/api', (req, res, next) => {
