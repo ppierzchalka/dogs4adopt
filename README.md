@@ -7,6 +7,10 @@ It will allow user to search dogs for adoption in desired area, without visiting
 
 App is in early stage of development, thus this section is not available now.
 
+### DEMO
+
+http://dogs4dopt.herokuapp.com
+
 ### TODO
 
 -Design & implement frontend
