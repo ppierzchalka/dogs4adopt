@@ -1,3 +1,29 @@
-h1 {
-	color: red;
+// global styles
+
+body {
+  position: relative;
+}
+
+// header styles
+.fixed-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  .header-menu {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .header-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+
+// content styles
+.content {
+  margin-top: 68px;
 }

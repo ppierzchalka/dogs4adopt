@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-	{{> head}}
+{{> head}}
 <body>
-	{{> header}}
-	{{> (lookup . 'pathToRender')}}
-	{{> footer}}
+	<div class="fixed-header">
+		{{> header}}
+	</div>
+	<div class="content">
+		{{> (lookup . 'pathToRender')}}
+		{{> footer}}
+	</div>
 </body>
+
 </html>

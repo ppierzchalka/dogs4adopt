@@ -9,7 +9,8 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '/public')));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-const menuPaths = [{title:'Home',path:'/'},{title:'About',path:'/about'}];
+const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Więcej',path:'/about'}];
+const menuShelters = [];
 const shelters = ['Lodz','Jelenia Gora','Dlozyna Gorna']
 
 // enabled file write
@@ -35,12 +36,13 @@ hbs.registerHelper('displayDogs', function(dog) {
 
 function generateShelterPages(list) {
   list.forEach(shelter => {
-    menuPaths.push({title: shelter, path: `/${encodeURIComponent(shelter)}`})
+    menuShelters.push({title: shelter, path: `/${encodeURIComponent(shelter)}`})
     app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
       res.render('index.hbs', {
         pageTitle: `Schronisko ${shelter}`,
         pathToRender: 'homepage',
         menu: menuPaths,
+        shelters: menuShelters,
         dogs: data.filter(dog => dog.location === shelter)
       });
     });
@@ -52,23 +54,26 @@ app.get('/', (req, res) => {
     pageTitle: 'Dogs4dopt',
     pathToRender: 'homepage',
     menu: menuPaths,
+    shelters: menuShelters,
     dogs: data
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('index.hbs', {
-    pageTitle: 'About page',
+    pageTitle: 'Informacje',
     pathToRender: 'about',
-    menu: menuPaths
+    menu: menuPaths,
+    shelters: menuShelters
   });
 });
 
 app.get('/search', function(req, res) {
       res.render('index.hbs', {
-        pageTitle: 'Dogs4dopt',
+        pageTitle: 'Wyniki Wyszukiwania',
         pathToRender: 'homepage',
         menu: menuPaths,
+        shelters: menuShelters,
         dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
       });
 });
