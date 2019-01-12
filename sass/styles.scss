@@ -1,10 +1,12 @@
 // global styles
+$primary-color: #39B89E;
+$white: #fff;
 
 body {
   position: relative;
 }
-
 // header styles
+
 .fixed-header {
   position: fixed;
   width: 100%;
@@ -14,16 +16,56 @@ body {
   .header-menu {
     margin: 0 auto;
     text-align: center;
+
+    a.nav-link {
+      color: $primary-color;
+      transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+
+      &:hover {
+        background: $primary-color;
+        color: white;
+      }
+    }
   }
+
   .header-search {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
+    button {
+      background: $white;
+      color: $primary-color;
+      border: 1px solid $primary-color;
+
+      &:hover {
+        background: $primary-color;
+        color: $white;
+      }
+    }
   }
 }
-
-
 // content styles
+
 .content {
   margin-top: 68px;
+  max-width: 100%;
+  overflow: hidden;
+}
+// footer styles
+
+footer {
+  height: 100%;
+  width: 100%;
+  background: $primary-color;
+  color: $white;
+  margin-top: 15px;
+  .footer-container {
+    text-align: center;
+    padding: 1rem;
+    .footer-text {
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
