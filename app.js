@@ -23,7 +23,7 @@ const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,20);
 
 hbs.registerHelper('displayDogs', function(dog) {
   return new hbs.SafeString(
-    `<div class="test3">
+    `<div class="dog-container">
     <a href=${this.link} target="_blank">
     <h3 class="name">${this.name}</h3>
     <img src=${this.image} alt=${this.name} />
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
     pathToRender: 'homepage',
     menu: menuPaths,
     shelters: menuShelters,
-    dogs: data
+    dogs: data.sort(() => .5 - Math.random()).slice(0,5)
   });
 });
 

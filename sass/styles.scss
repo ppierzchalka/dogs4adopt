@@ -1,6 +1,32 @@
-// global styles
+// variables
+// colors
 $primary-color: #39B89E;
 $white: #fff;
+$black: #000;
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs: 480px !default; //** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min: $screen-xs !default; //** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone: $screen-xs-min !default; // Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default; //** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet: $screen-sm-min !default; // Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default; //** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop: $screen-md-min !default; // Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default; //** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop: $screen-lg-min !default; // So media queries don't overlap when required, provide a maximum
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default; // global styles
 
 body {
   position: relative;
@@ -12,6 +38,7 @@ body {
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 9999999;
 
   .header-menu {
     margin: 0 auto;
@@ -51,6 +78,59 @@ body {
   margin-top: 68px;
   max-width: 100%;
   overflow: hidden;
+
+  * {
+    max-width: 100%;
+  }
+
+  .hero {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url(/images/hero.jpg);
+    background-size: cover;
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-position-y: bottom;
+    @media screen and (max-width: $screen-xs) {
+      background-position-x: -45vh;
+    }
+
+    .hero-copy {
+      color: $white;
+      text-align: center;
+
+      h1 {
+        font-size: 4rem;
+        @media screen and (max-width: $screen-xs) {
+          font-size: 2rem;
+        }
+      }
+
+      h3 {
+        font-size: 2.5rem;
+        @media screen and (max-width: $screen-xs) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  .home-main {
+    position: absolute;
+    top: 80vh;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+  }
 }
 // footer styles
 
@@ -60,6 +140,7 @@ footer {
   background: $primary-color;
   color: $white;
   margin-top: 15px;
+
   .footer-container {
     text-align: center;
     padding: 1rem;
@@ -67,9 +148,11 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
     .footer-text {
       margin: 0 5px;
       padding: 0;
+
       a {
         color: $white;
         transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
