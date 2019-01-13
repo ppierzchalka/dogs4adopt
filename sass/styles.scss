@@ -2,9 +2,7 @@
 // colors
 $primary-color: #39B89E;
 $white: #fff;
-$black: #000;
-
-//== Media queries breakpoints
+$black: #000; //== Media queries breakpoints
 //
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 // Extra small screen / phone
@@ -44,38 +42,49 @@ body {
     margin: 0 auto;
     text-align: center;
 
-    a.nav-link {
-      color: $primary-color;
-      transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+    li.dropdown,
+    li.nav-item {
+      a.nav-link {
+        color: $primary-color;
+        background: none;
+        transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
 
-      &:hover {
+        &:hover {
+          background: $primary-color;
+          color: white;
+        }
+      }
+    }
+
+    li.show {
+      a.nav-link {
         background: $primary-color;
         color: white;
       }
     }
   }
+}
 
-  .header-search {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+.header-search {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
-    button {
-      background: $white;
-      color: $primary-color;
-      border: 1px solid $primary-color;
+  button {
+    background: $white;
+    color: $primary-color;
+    border: 1px solid $primary-color;
 
-      &:hover {
-        background: $primary-color;
-        color: $white;
-      }
+    &:hover {
+      background: $primary-color;
+      color: $white;
     }
   }
 }
 // content styles
 
 .content {
-  margin-top: 68px;
+  margin: 68px 0;
   max-width: 100%;
   overflow: hidden;
 
@@ -91,7 +100,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url(/images/hero.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3)), url("/images/hero.jpg");
     background-size: cover;
     height: 80vh;
     width: 100vw;
@@ -131,16 +140,19 @@ body {
     position: absolute;
     width: 100%;
     background: #fff;
+    margin-bottom: 68px;
   }
 }
 // footer styles
 
 footer {
-  height: 100%;
+  height: 68px;
   width: 100%;
   background: $primary-color;
   color: $white;
   margin-top: 15px;
+  position: fixed;
+  bottom: 0;
 
   .footer-container {
     text-align: center;
