@@ -63,9 +63,17 @@ footer {
   .footer-container {
     text-align: center;
     padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     .footer-text {
-      margin: 0;
+      margin: 0 5px;
       padding: 0;
+      a {
+        color: $white;
+        transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+      }
     }
   }
 }
