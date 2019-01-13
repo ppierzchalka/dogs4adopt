@@ -1,6 +1,7 @@
 // variables
 // colors
 $primary-color: #39B89E;
+$secondary-color: #248470;
 $white: #fff;
 $black: #000; //== Media queries breakpoints
 //
@@ -88,10 +89,6 @@ body {
   max-width: 100%;
   overflow: hidden;
 
-  * {
-    max-width: 100%;
-  }
-
   .hero {
     margin-top: 68px;
     position: fixed;
@@ -141,7 +138,41 @@ body {
     width: 100%;
     background: #fff;
     margin-bottom: 68px;
+
+    .welcome {
+      @media screen and (max-width: $screen-xs) {
+        margin: 0;
+        padding: 0;
+      }
+
+      .hello-row {
+        @media screen and (max-width: $screen-xs) {
+          margin: 0;
+        }
+
+        .hello-column {
+          background: $primary-color;
+          border-radius: 15px;
+          color: $white;
+          top: -90px;
+          padding: 20px 40px;
+          @media screen and (max-width: $screen-xs) {
+            border-radius: 0;
+          }
+
+          h3,
+          h4 {
+            text-align: center;
+          }
+
+          .hello-text {
+            text-align: justify;
+          }
+        }
+      }
+    }
   }
+
   .main {
     position: absolute;
     z-index: 1000;
@@ -149,6 +180,106 @@ body {
     width: 100%;
     background: #fff;
     margin-bottom: 68px;
+  }
+
+  .dogs-container {
+    margin-bottom: 60px;
+
+    .title {
+      text-align: center;
+      color: $primary-color;
+      margin-bottom: 30px;
+    }
+
+    .row.dogs-thumbnails {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .dog-element {
+        text-align: center;
+        border-radius: 15px;
+        border: 1px solid $primary-color;
+        padding: 10px 0 0;
+        margin: 5px;
+
+        a {
+          text-decoration: none !important;
+          color: $primary-color;
+
+          .name {
+            transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+            text-decoration: none !important;
+          }
+
+          .img-crop {
+            height: 150px;
+            overflow: hidden;
+            margin: 15px 0;
+
+            .dog-img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .view {
+            width: 100%;
+            border: none;
+            color: $white;
+            background: $primary-color;
+            border-top: 1px solid $primary-color;
+            padding: 10px;
+            transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+            border-radius: 0 0 15px 15px;
+
+            &:hover {
+              color: $primary-color;
+              background: $white;
+            }
+          }
+        }
+      }
+
+      .dog-element-last {
+        background: $primary-color;
+        color: $white;
+
+        a {
+          .name {
+            color: $white;
+          }
+
+          .img-crop {
+            svg {
+              width: 4em;
+              height: 50px;
+              margin: 50px 0;
+
+              path {
+                fill: $white;
+              }
+            }
+          }
+
+          .location {
+            color: $white;
+          }
+
+          .view {
+            border-top: 1px solid $secondary-color;
+
+            &:hover {
+              background: $primary-color;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+  .ctas {
+    text-align: center;
   }
 }
 // footer styles

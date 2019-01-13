@@ -23,12 +23,14 @@ const data = JSON.parse(fs.readFileSync('./public/complete.json')).slice(0,20);
 
 hbs.registerHelper('displayDogs', function(dog) {
   return new hbs.SafeString(
-    `<div class="dog-container">
+    `<div class="col-md dog-element">
     <a href=${this.link} target="_blank">
     <h3 class="name">${this.name}</h3>
-    <img src=${this.image} alt=${this.name} />
-    <p class="location">${this.location}</p>
-    <button>Zobacz</button>
+    <div class="img-crop">
+    <img class="dog-img" src=${this.image} alt=${this.name} onerror="this.onerror=null;this.src='/images/noimage.png';"/>
+    </div>
+    <p class="location">Lokalizacja: ${this.location}</p>
+    <button class="view">Zobacz</button>
     </a>
     </div>`
   )
@@ -55,7 +57,7 @@ app.get('/', (req, res) => {
     pathToRender: 'homepage',
     menu: menuPaths,
     shelters: menuShelters,
-    dogs: data.sort(() => .5 - Math.random()).slice(0,5)
+    dogs: data.sort(() => .5 - Math.random()).slice(0,4)
   });
 });
 

@@ -4,10 +4,46 @@
     <h3>Znajdź psa do adopcji w okolicy!</h3>
   </div>
 </section>
-<section class="home-main">
-  <div class="dogs-random">
-    {{#each dogs}}
-    {{displayDogs}}
-    {{/each}}
-  </div>
-</section>
+<main class="home-main">
+  <section class="welcome container">
+    <div class="row justify-content-center hello-row">
+      <div class="col-md-8 align-self-center hello-column">
+        <h3>Nie kupuj, adoptuj!</h3>
+        <h4>Setki psow czekają na adopcję!</h4>
+        <p class="hello-text">Strona ta powstała w odpowiedzi na potrzebę setek psów w schroniskach, dzięki niej łatwiej wyszukasz najbliższe schronisko a także poznasz psy, które możesz przyjąć pod swój dach!</p>
+      </div>
+    </div>
+  </section>
+  <section class="container dogs-container">
+    <div class="row">
+      <div class="col-md">
+        <h3 class="title">Czekają na ciebie:</h3>
+      </div>
+    </div>
+    <div class="row dogs-thumbnails dogs-random">
+      {{#each dogs}}
+        {{displayDogs}}
+      {{/each}}
+      <div class="col-md dog-element dog-element-last">
+        <a href="#">
+            <h3 class="name">Setki innych</h3>
+            <div class="img-crop">
+              <i class="fas fa-dog"></i>
+            </div>
+            <p class="location">W potrzebie!</p>
+            <button class="view">Zobacz wszystkie</button>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="ctas">
+    <div class="row">
+      <div class="col-md-6">
+        <p>znajdź psa w swojej okolicy (mapa)</p>
+      </div>
+      <div class="col-md-6">
+        <p>przeglądaj listę schronisk (lista z filtrowaniem)</p>
+      </div>
+    </div>
+  </section>
+</main>
