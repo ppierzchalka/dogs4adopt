@@ -40,7 +40,7 @@ function generateShelterPages(list) {
     app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
       res.render('index.hbs', {
         pageTitle: `Schronisko ${shelter}`,
-        pathToRender: 'homepage',
+        pathToRender: 'shelter',
         menu: menuPaths,
         shelters: menuShelters,
         dogs: data.filter(dog => dog.location === shelter)
@@ -71,7 +71,7 @@ app.get('/about', (req, res) => {
 app.get('/search', function(req, res) {
       res.render('index.hbs', {
         pageTitle: 'Wyniki Wyszukiwania',
-        pathToRender: 'homepage',
+        pathToRender: 'search',
         menu: menuPaths,
         shelters: menuShelters,
         dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
