@@ -182,14 +182,31 @@ body {
     margin-bottom: 68px;
   }
 
-  .dogs-container {
+  .subheader {
+    border-bottom: 1px solid $primary-color;
+    padding: 40px;
     margin-bottom: 60px;
 
-    .title {
-      text-align: center;
-      color: $primary-color;
-      margin-bottom: 30px;
+    .col-md {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      .title {
+        font-size: 3rem;
+        margin-bottom: 0px;
+      }
     }
+  }
+
+  .title {
+    text-align: center;
+    color: $primary-color;
+    margin-bottom: 30px;
+  }
+
+  .dogs-container {
+    margin-bottom: 60px;
 
     .row.dogs-thumbnails {
       display: flex;
@@ -278,6 +295,7 @@ body {
       }
     }
   }
+
   .ctas {
     text-align: center;
   }

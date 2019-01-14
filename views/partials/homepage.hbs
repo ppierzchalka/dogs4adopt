@@ -22,16 +22,18 @@
     </div>
     <div class="row dogs-thumbnails dogs-random">
       {{#each dogs}}
-        {{displayDogs}}
+        <div class="col-md dog-element">
+          {{displayDogs}}
+        </div>
       {{/each}}
       <div class="col-md dog-element dog-element-last">
         <a href="#">
-            <h3 class="name">Setki innych</h3>
-            <div class="img-crop">
-              <i class="fas fa-paw"></i>
-            </div>
-            <p class="location">W potrzebie!</p>
-            <button class="view">Zobacz wszystkie</button>
+          <h3 class="name">Setki innych</h3>
+          <div class="img-crop">
+            <i class="fas fa-paw"></i>
+          </div>
+          <p class="location">W potrzebie!</p>
+          <button class="view">Zobacz wszystkie</button>
         </a>
       </div>
     </div>

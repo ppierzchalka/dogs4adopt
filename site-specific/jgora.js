@@ -24,7 +24,7 @@ function getData() {
                 name: $('a', this).attr('href').replace('http://schronisko.mpgk.jgora.pl/','').replace('/', ''),
                 image: $('img', this).attr('src'),
                 link: $('a', this).attr('href'),
-                location: "Jelenia Gora"
+                location: "Jelenia Góra"
               })
             })
             fs.writeFileSync('./partial-json/dogs-jgora.json', JSON.stringify(dogs));

@@ -22,7 +22,7 @@ function getData() {
                 name: $('span', this).html(),
                 image: "http://www.schronisko-lodz.pl/" + $('img', this).attr('src'),
                 link: "http://www.schronisko-lodz.pl/" + $('a', this).attr('href'),
-                location: "Lodz"
+                location: "Łódź"
               })
             })
             fs.writeFileSync('./partial-json/dogs-lodz.json', JSON.stringify(dogs));
