@@ -80,6 +80,16 @@ app.get('/search', function(req, res) {
       });
 });
 
+app.get('/all', (req, res) => {
+  res.render('index.hbs', {
+    pageTitle: `Wszystkie zwierzęta`,
+    pathToRender: 'shelter',
+    menu: menuPaths,
+    shelters: menuShelters,
+    dogs: data,
+  });
+});
+
 app.get('/api', (req, res, next) => {
   const data = JSON.parse(fs.readFileSync('./public/complete.json'));
   res.json(data);

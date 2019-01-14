@@ -1,7 +1,16 @@
-<section class="main">
-  <div class="dogs-random">
+<section class="subheader container-fluid">
+  <div class="row">
+    <div class="col-md">
+      <h3 class="title">{{pageTitle}}</h3>
+    </div>
+  </div>
+</section>
+<section class="container dogs-container">
+  <div class="row dogs-thumbnails dogs-random">
     {{#each dogs}}
-    {{displayDogs}}
+      <div class="col-md-3 dog-element">
+        {{displayDogs}}
+      </div>
     {{/each}}
   </div>
 </section>

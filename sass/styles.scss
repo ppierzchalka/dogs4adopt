@@ -192,9 +192,10 @@ body {
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+
       .title {
         font-size: 3rem;
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
     }
   }
@@ -297,6 +298,16 @@ body {
   }
 
   .ctas {
+    text-align: center;
+  }
+}
+
+.text.container {
+  margin: 15vh auto;
+
+  .summary {
+    font-weight: bold;
+    font-size: 1.1em;
     text-align: center;
   }
 }
