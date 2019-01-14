@@ -137,7 +137,7 @@ body {
     position: absolute;
     width: 100%;
     background: #fff;
-    margin-bottom: 68px;
+    margin-bottom: 128px;
 
     .welcome {
       @media screen and (max-width: $screen-xs) {
@@ -179,7 +179,7 @@ body {
     position: absolute;
     width: 100%;
     background: #fff;
-    margin-bottom: 68px;
+    margin-bottom: 128px;
   }
 
   .subheader {
@@ -314,7 +314,7 @@ body {
 // footer styles
 
 footer {
-  height: 68px;
+  height: 128px;
   width: 100%;
   background: $primary-color;
   color: $white;
