@@ -14,11 +14,11 @@ const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Więcej',path:'/abo
 const menuShelters = [];
 const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna']
 
-// enabled file write
+// comment this out to disable page scraping
 // setInterval(() => {
 //   merger.readAndMerge();
 //   console.log('Reading and merging')
-// }, 604800000)
+// }, 604800000) // week = 604800000
 
 const data = JSON.parse(fs.readFileSync('./public/complete.json')).sort(() => .5 - Math.random()).slice(0,20);
 

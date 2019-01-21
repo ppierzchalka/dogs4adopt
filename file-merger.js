@@ -18,6 +18,10 @@ function readAndMerge() {
   console.log(`Merging files, files.length sum = ${lodzData.length + dgornaData.length + jgoraData.length} Output data length: ${data.length}`);
 
   fs.writeFileSync('./public/complete.json', JSON.stringify(data));
+
+  let today = `Scrape: ${new Date().toString()}
+`;
+  fs.appendFileSync('./public/dates.log', today );
 }
 
 module.exports.readAndMerge = readAndMerge;
