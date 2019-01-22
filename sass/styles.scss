@@ -344,8 +344,50 @@ body {
         border-radius: 15px;
         margin: 40px 20px;
         box-sizing: border-box;
+        color: $white;
+        background-color: $primary-color;
         @media screen and (max-width: $screen-md) {
           margin: 10px auto;
+        }
+
+        @media screen and (max-width: $screen-xs) {
+          border-radius: 0;
+          border: none;
+        }
+      }
+
+      .map {
+        background-image: url("/images/map-icon.png");
+        background-size: cover;
+        background-position: center center;
+        border: 1px solid $white;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 40px;
+        border: 1px solid $primary-color;
+
+        @media screen and (max-width: $screen-xs) {
+          border-radius: 0;
+          border: none;
+        }
+
+        button {
+          border: 1px solid $primary-color;
+          color: $primary-color;
+          padding: 10px 15px;
+          background: none;
+          border-radius: 15px;
+          transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+          &:hover {
+            background: $primary-color;
+            color: $white;
+          }
+          h4 {
+            margin: 0;
+            padding: 0;
+          }
         }
       }
 
