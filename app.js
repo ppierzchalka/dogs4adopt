@@ -90,6 +90,16 @@ app.get('/all', (req, res) => {
   });
 });
 
+app.get('/map', (req, res) => {
+  res.render('index.hbs', {
+    pageTitle: `Wszystkie zwierzęta`,
+    pathToRender: 'map',
+    menu: menuPaths,
+    shelters: menuShelters,
+    dogs: data,
+  });
+});
+
 app.get('/api', (req, res, next) => {
   const data = JSON.parse(fs.readFileSync('./public/complete.json'));
   res.json(data);
