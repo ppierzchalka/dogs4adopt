@@ -29,6 +29,23 @@ $screen-md-max: ($screen-lg-min - 1) !default; // global styles
 
 body {
   position: relative;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border: 1px solid $white;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $secondary-color;
+  }
 }
 // header styles
 
@@ -309,6 +326,72 @@ body {
     font-weight: bold;
     font-size: 1.1em;
     text-align: center;
+  }
+}
+
+.big-buttons-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .big-button {
+    height: 500px;
+    border: 1px solid $primary-color;
+    border-radius: 15px;
+    margin: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .list {
+    padding: 10px;
+    text-align: center;
+    color: $white;
+    background-color: $primary-color;
+
+    .filter-title {
+      padding: 15px;
+    }
+
+    .filter-input {
+      border: none;
+      padding: 5px 10px;
+      font-size: 18px;
+    }
+
+    .shelters-fiter-list {
+      list-style: none;
+      margin: 0;
+      padding: 15px 0;
+      max-height: 350px;
+      overflow: overlay;
+
+      .filterable {
+        padding: 3px;
+        font-size: 18px;
+
+        a {
+          color: $white;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $primary-color;
+        border: 1px solid $white;
+      }
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $secondary-color;
+      }
+    }
   }
 }
 // footer styles

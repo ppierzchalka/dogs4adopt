@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '/public')));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Więcej',path:'/about'}];
+const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Informacje',path:'/about'}];
 const menuShelters = [];
 const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna']
 

@@ -39,12 +39,24 @@
     </div>
   </section>
   <section class="ctas container">
-    <div class="row">
-      <div class="col-md-6">
-        <p>TODO: znajdź psa w swojej okolicy (mapa)</p>
+    <div class="row big-buttons-row">
+      <div class="col-md-6 big-button map">
+        <a href="#">
+
+        </a>
       </div>
-      <div class="col-md-6">
-        <p>TODO: przeglądaj listę schronisk (lista z filtrowaniem)</p>
+      <div class="col-md-6 big-button list">
+        <label id='filter-label'>
+          <h4 class="filter-title">Szukaj schroniska:</h4>
+          <input id="filter-input" class="filter-input" type="text" aria-label="Szukaj schroniska" placeholder="Wpisz nazwę..." value="">
+        </label>
+        <ul id="filter-list" class="shelters-fiter-list">
+          {{#each shelters}}
+            <li class="filterable">
+              <a href={{this.path}}>{{this.title}}</a>
+            </li>
+          {{/each}}
+        </ul>
       </div>
     </div>
   </section>
