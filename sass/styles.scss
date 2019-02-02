@@ -376,8 +376,8 @@ body {
         button {
           border: 1px solid $primary-color;
           color: $primary-color;
+					background: $white;
           padding: 10px 15px;
-          background: none;
           border-radius: 15px;
           transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
           &:hover {
@@ -454,6 +454,35 @@ body {
     text-align: center;
   }
 }
+
+// map styles
+
+.main-map {
+  position: relative;
+  #sidebar {
+    height: 100vw;
+    width: 400px;
+    background: $white;
+    position: absolute;
+    top: 0;
+    left: -400px;
+    z-index: 999;
+    transition: all 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+    .sidebar-button {
+      position: absolute;
+      top: 0;
+      right: -50px;
+      width: 50px;
+      height: 50px;
+      background: black;
+    }
+  }
+  #map {
+    max-width: 100%;
+    height: 100vh;
+  }
+}
+
 // footer styles
 
 footer {
