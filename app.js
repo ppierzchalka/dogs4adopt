@@ -12,7 +12,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Informacje',path:'/about'}];
 const menuShelters = [];
-const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna']
+const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna'];
 
 // comment this out to disable page scraping
 // setInterval(() => {
@@ -32,7 +32,7 @@ hbs.registerHelper('displayDogs', function(dog) {
     <p class="location">Lokalizacja: ${this.location}</p>
     <button class="view">Zobacz</button>
     </a>`
-  )
+  );
 });
 
 // hbs.registerHelper('listdogs', function(dog) {
@@ -50,7 +50,7 @@ hbs.registerHelper('displayDogs', function(dog) {
 
 function generateShelterPages(list) {
   list.forEach(shelter => {
-    menuShelters.push({title: shelter, path: `/${encodeURIComponent(shelter)}`})
+    menuShelters.push({title: shelter, path: `/${encodeURIComponent(shelter)}`});
     app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
 
       res.render('index.hbs', {
@@ -61,7 +61,7 @@ function generateShelterPages(list) {
         dogs: data.filter(dog => dog.location === shelter),
       });
     });
-  })
+  });
 }
 
 app.get('/', (req, res) => {
@@ -116,10 +116,10 @@ app.get('/map', (req, res) => {
 app.get('/api', (req, res, next) => {
   const data = JSON.parse(fs.readFileSync('./public/complete.json'));
   res.json(data);
-})
+});
 
 generateShelterPages(shelters);
 
 app.listen(port, () => {
-  console.log(`Server is up on port ${port}`)
+  console.log(`Server is up on port ${port}`);
 });
