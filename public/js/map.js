@@ -51,23 +51,25 @@ function initMap() {
         let markers = [];
 
         Object.keys(sheltersCoords).forEach(key => {
-            const marker = new google.maps.Marker({
-                position: sheltersCoords[key].position,
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: sheltersCoords[key].name,
-                icon: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red${sortedDogs[key].length}.png`,
-                id: key
-            });
-            const infowindow = new google.maps.InfoWindow({
-                content: `Miejsce: ${sheltersCoords[key].name} - W tym schronisku jest ${sortedDogs[key].length} psów`
-            });
+            if (sortedDogs[key]) {
+                const marker = new google.maps.Marker({
+                    position: sheltersCoords[key].position,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    title: sheltersCoords[key].name,
+                    icon: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red${sortedDogs[key].length}.png`,
+                    id: key
+                });
+                const infowindow = new google.maps.InfoWindow({
+                    content: `Miejsce: ${sheltersCoords[key].name} - W tym schronisku jest ${sortedDogs[key].length} psów`
+                });
 
-            markers.push(marker);
+                markers.push(marker);
 
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            })
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                })
+            }
         });
         
         let bounds = new google.maps.LatLngBounds();

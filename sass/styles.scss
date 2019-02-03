@@ -580,6 +580,12 @@ body {
         .name, .location {
           margin: 0;
         }
+        .dog-img {
+          max-height: 100px;
+        }
+        a {
+          color: $primary-color;
+        }
       }
     }
   }
