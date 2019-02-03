@@ -6,6 +6,7 @@
 // colors
 $primary-color: #39B89E;
 $secondary-color: #248470;
+$lgrey: #f1f1f1;
 $white: #fff;
 $black: #000; //== Media queries breakpoints
 //
@@ -40,7 +41,7 @@ body {
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: $lgrey;
   }
 
   /* Handle */
@@ -399,7 +400,7 @@ body {
           color: $primary-color;
           background: $white;
           padding: 10px 15px;
-          border-radius: 15px;
+          border-radius: 10px;
           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
           &:hover {
@@ -428,6 +429,7 @@ body {
           border: none;
           padding: 5px 10px;
           font-size: 18px;
+          border-radius: 3px;
         }
 
         .shelters-fiter-list {
@@ -452,7 +454,7 @@ body {
 
           /* Track */
           &::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: $lgrey;
           }
 
           /* Handle */
@@ -514,21 +516,25 @@ body {
       align-items: center;
       background: $primary-color;
       transition: all 0.15s ease-in-out,
-      background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out,
-      box-shadow 0.15s ease-in-out;
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+
       &:hover {
         opacity: 1;
       }
+
       &:focus {
         outline-color: $primary-color;
       }
+
       .hamburger-inner,
       .hamburger-inner:after,
       .hamburger-inner:before {
-        background: #f1f1f1;
+        background: $lgrey;
       }
     }
+
     .is-active {
       right: 0 !important;
     }
@@ -540,6 +546,41 @@ body {
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+    }
+
+    .sidebar-content {
+      max-height: calc(100% - 70px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: $lgrey;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $primary-color;
+        border: 1px solid $white;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $secondary-color;
+      }
+
+      .dog-elem {
+        text-align: center;
+        padding: 5px 0;
+        border-bottom: 1px solid $lgrey;
+        .name, .location {
+          margin: 0;
+        }
+      }
     }
   }
 

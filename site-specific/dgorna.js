@@ -24,7 +24,8 @@ function getData() {
                 name: $('img', this).attr('alt'),
                 image: "http://schroniskodg.pl" + $('img', this).attr('src'),
                 link: "http://schroniskodg.pl" + $('a', this).attr('href'),
-                location: "Dłużyna Górna"
+                location: "Dłużyna Górna",
+                dataLocation: 'dgorna'
               })
             })
             fs.writeFileSync('./partial-json/dogs-dgorna.json', JSON.stringify(dogs));

@@ -30,7 +30,9 @@ const shelters = ['Łódź', 'Jelenia Góra', 'Dłużyna Górna'];
 //   console.log('Reading and merging')
 // }, 604800000) // week = 604800000
 
-const data = JSON.parse(fs.readFileSync('./public/complete.json')).sort(() => .5 - Math.random()).slice(0, 20);
+const data = JSON.parse(fs.readFileSync('./public/complete.json')).filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
+
+// filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers. This has to be fixed
 
 hbs.registerHelper('displayDogs', function (dog) {
   return new hbs.SafeString(
@@ -45,18 +47,15 @@ hbs.registerHelper('displayDogs', function (dog) {
   );
 });
 
-// hbs.registerHelper('listdogs', function(dog) {
-//   return new hbs.SafeString(
-//     `<a href=${this.link} target="_blank">
-//     <h3 class="name">${this.name}</h3>
-//     <div class="img-crop">
-//     <img class="dog-img" src=${this.image} alt=${this.name} onerror="this.onerror=null;this.src='/images/noimage.png';"/>
-//     </div>
-//     <p class="location">Lokalizacja: ${this.location}</p>
-//     <button class="view">Zobacz</button>
-//     </a>`
-//   )
-// });
+hbs.registerHelper('listDogs', function(dog) {
+  return new hbs.SafeString(
+    `<div class="dog-elem" id="${this.name}" data-location=${this.dataLocation}>
+    <h3 class="name">${this.name}</h3>
+    <p class="location">Lokalizacja: ${this.location}</p>
+    </div>`
+    // <a href=${this.link} target="_blank">Zobacz</a>
+  )
+});
 
 function generateShelterPages(list) {
   list.forEach(shelter => {
