@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $(window).scroll(function(e) {
+$(document).ready(function () {
+  $(window).scroll(function (e) {
     parallax();
   });
 
@@ -15,22 +15,9 @@ $(document).ready(function() {
   const input = document.querySelector('#filter-input');
   const list = [...document.querySelectorAll('.filterable')];
   const listParent = document.querySelector('#filter-list');
-  const mapElem = document.querySelector('#map');
 
   if (input) {
     input.addEventListener('input', filterShelters);
-  }
-
-  if (mapElem) {
-    var map = new google.maps.Map(mapElem, {
-      center: {
-        lat: 51.919437,
-        lng: 19.145136
-      },
-      zoom: 7,
-      disableDefaultUI: true,
-      styles: styles
-    });
   }
 
   function filterShelters(e) {
@@ -43,4 +30,23 @@ $(document).ready(function() {
       listParent.appendChild(elem);
     })
   }
+
+  const mapSidebar = document.querySelector('#sidebar');
+  const mapButton = document.querySelector('#sidebar-button');
+
+  if (mapButton) {
+    mapButton.addEventListener('click', toggleSidebar);
+  }
+
+  function toggleSidebar(e) {
+    let flag = [...e.currentTarget.classList].indexOf('is-active');
+    if (flag < 0) {
+      mapSidebar.classList.add('map-sidebar-active');
+      e.currentTarget.classList.add('is-active');
+    } else {
+      mapSidebar.classList.remove('map-sidebar-active');
+      e.currentTarget.classList.remove('is-active');
+    }
+  }
+
 });

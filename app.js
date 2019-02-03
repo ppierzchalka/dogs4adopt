@@ -10,9 +10,19 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '/public')));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
-const menuPaths = [{title:'Strona Głowna',path:'/'},{title:'Informacje',path:'/about'}];
+const menuPaths = [{
+  title: 'Strona Głowna',
+  path: '/'
+}, {
+  title: 'Informacje',
+  path: '/about'
+},
+{
+  title: 'Szukaj na mapie',
+  path: '/map'
+}];
 const menuShelters = [];
-const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna'];
+const shelters = ['Łódź', 'Jelenia Góra', 'Dłużyna Górna'];
 
 // comment this out to disable page scraping
 // setInterval(() => {
@@ -20,9 +30,9 @@ const shelters = ['Łódź','Jelenia Góra','Dłużyna Górna'];
 //   console.log('Reading and merging')
 // }, 604800000) // week = 604800000
 
-const data = JSON.parse(fs.readFileSync('./public/complete.json')).sort(() => .5 - Math.random()).slice(0,20);
+const data = JSON.parse(fs.readFileSync('./public/complete.json')).sort(() => .5 - Math.random()).slice(0, 20);
 
-hbs.registerHelper('displayDogs', function(dog) {
+hbs.registerHelper('displayDogs', function (dog) {
   return new hbs.SafeString(
     `<a href=${this.link} target="_blank">
     <h3 class="name">${this.name}</h3>
@@ -50,7 +60,10 @@ hbs.registerHelper('displayDogs', function(dog) {
 
 function generateShelterPages(list) {
   list.forEach(shelter => {
-    menuShelters.push({title: shelter, path: `/${encodeURIComponent(shelter)}`});
+    menuShelters.push({
+      title: shelter,
+      path: `/${encodeURIComponent(shelter)}`
+    });
     app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
 
       res.render('index.hbs', {
@@ -70,7 +83,7 @@ app.get('/', (req, res) => {
     pathToRender: 'homepage',
     menu: menuPaths,
     shelters: menuShelters,
-    dogs: data.sort(() => .5 - Math.random()).slice(0,4)
+    dogs: data.sort(() => .5 - Math.random()).slice(0, 4)
   });
 });
 
@@ -83,14 +96,14 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/search', function(req, res) {
-      res.render('index.hbs', {
-        pageTitle: 'Wyniki Wyszukiwania',
-        pathToRender: 'search',
-        menu: menuPaths,
-        shelters: menuShelters,
-        dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
-      });
+app.get('/search', function (req, res) {
+  res.render('index.hbs', {
+    pageTitle: 'Wyniki Wyszukiwania',
+    pathToRender: 'search',
+    menu: menuPaths,
+    shelters: menuShelters,
+    dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
+  });
 });
 
 app.get('/all', (req, res) => {
