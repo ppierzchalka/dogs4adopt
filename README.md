@@ -1,11 +1,14 @@
 # Dogs4Adopt
 
-This App will display data scraped from animal shelters in Poland.
-It will allow user to search dogs for adoption in desired area, without visiting many websites.
+This App scrapes data from animal shelters in Poland, then displays scraped data in user friendly GUI to find dogs to adopt.
 
 ### Installation & Running
 
-App is in early stage of development, thus this section is not available now.
+Clone this repo
+Provide your api key in views/partials/footer.hbs in google maps link
+Run with 'npm run start' command
+---
+Please do not abuse this application.
 
 ### DEMO
 
@@ -13,6 +16,5 @@ http://dogs4dopt.herokuapp.com
 
 ### TODO
 
--Design & implement frontend
 -Implement Geolocalization
 -Add more shelters
