@@ -1,5 +1,6 @@
 # Dogs4Adopt
----
+
+![LOGO](https://raw.githubusercontent.com/Websited/dogs4adopt/master/public/images/logo.png)
 
 ## Intro
 
