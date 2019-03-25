@@ -1,6 +1,7 @@
 const express = require('express'),
 router = new express.Router()
 
+// Sets map page url
 router.get('/map', (req, res) => {
     const variables = req.app.get('variables')
     const data = req.app.get('data')

@@ -1,3 +1,4 @@
+// Automatically generate shelter pages
 function generateShelterPages(app, list, menuShelters, menuPaths, data) {
     list.forEach(shelter => {
         menuShelters.push({

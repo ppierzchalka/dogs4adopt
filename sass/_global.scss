@@ -1,0 +1,35 @@
+// global styles
+
+body {
+    position: relative;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $lgrey;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $primary-color;
+        border: 1px solid $white;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $secondary-color;
+    }
+}
+
+.text.container {
+    margin: 15vh auto;
+
+    .summary {
+        font-weight: bold;
+        font-size: 1.1em;
+        text-align: center;
+    }
+}

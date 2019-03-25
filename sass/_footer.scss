@@ -1,0 +1,38 @@
+// footer styles
+
+footer {
+    height: 128px;
+    width: 100%;
+    background: $primary-color;
+    color: $white;
+    margin-top: 15px;
+    position: fixed;
+    bottom: 0;
+
+    @media screen and (max-width: $screen-xs) {
+        height: 230px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-container {
+        text-align: center;
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .footer-text {
+            margin: 0 5px;
+            padding: 0;
+
+            a {
+                color: $white;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+        }
+    }
+}

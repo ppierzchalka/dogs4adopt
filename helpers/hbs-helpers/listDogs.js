@@ -1,3 +1,4 @@
+// Map list element
 module.exports.register = function(hbs) {
     hbs.registerHelper('listDogs', function (dog) {
         return new hbs.SafeString(

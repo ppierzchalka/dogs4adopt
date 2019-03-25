@@ -1,4 +1,5 @@
 const variables = {
+    // Menu items
     menuPaths: [{
             title: 'Strona Głowna',
             path: '/'
@@ -11,6 +12,7 @@ const variables = {
             path: '/map'
         }
     ],
+    // Variable to store shelters menu
     menuShelters: [],
     shelters: ['Łódź', 'Jelenia Góra', 'Dłużyna Górna']
 }

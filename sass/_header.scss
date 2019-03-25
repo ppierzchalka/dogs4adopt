@@ -1,0 +1,52 @@
+// header styles
+
+.fixed-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+
+    .header-menu {
+        margin: 0 auto;
+        text-align: center;
+
+        li.dropdown,
+        li.nav-item {
+            a.nav-link {
+                color: $primary-color;
+                background: none;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+                &:hover {
+                    background: $primary-color;
+                    color: white;
+                }
+            }
+        }
+
+        li.show {
+            a.nav-link {
+                background: $primary-color;
+                color: white;
+            }
+        }
+    }
+}
+
+.header-search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button {
+        background: $white;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+
+        &:hover {
+            background: $primary-color;
+            color: $white;
+        }
+    }
+}

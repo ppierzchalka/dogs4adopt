@@ -1,24 +1,27 @@
 const fs = require('fs');
-const lodz = require('./site-specific/lodz.js');
-const dgorna = require('./site-specific/dgorna.js');
-const jgora = require('./site-specific/jgora.js');
 
+// Shelter page specific scrapers registration
+const lodz = require('./site-specific/lodz.js'),
+      dgorna = require('./site-specific/dgorna.js'),
+      jgora = require('./site-specific/jgora.js');
+
+// Runs page scrapers
 function readAndMerge() {
-  // Working scrapers turned off to not ddos websites while developing
   lodz.getData_lodz();
   dgorna.getData_dgorna();
   jgora.getData_jgora();
 
   let data, lodzData, dgornaData;
+  // Read data recieved from page scrapers
   lodzData = JSON.parse(fs.readFileSync('./partial-json/dogs-lodz.json'));
   dgornaData = JSON.parse(fs.readFileSync('./partial-json/dogs-dgorna.json'));
   jgoraData = JSON.parse(fs.readFileSync('./partial-json/dogs-jgora.json'));
   data = lodzData.concat(dgornaData).concat(jgoraData);
 
-  console.log(`Merging files, files.length sum = ${lodzData.length + dgornaData.length + jgoraData.length} Output data length: ${data.length}`);
-
+  // Write all data to single file
   fs.writeFileSync('./public/complete.json', JSON.stringify(data));
 
+  //Get date and write scrape log
   let today = `Scrape: ${new Date().toString()}
 `;
   fs.appendFileSync('./public/dates.log', today );

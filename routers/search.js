@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router()
 
+// Sets search page url
 router.get('/search', function (req, res) {
     const variables = req.app.get('variables')
     const data = req.app.get('data')

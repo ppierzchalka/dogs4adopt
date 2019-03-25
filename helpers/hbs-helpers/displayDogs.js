@@ -1,3 +1,4 @@
+// Single dog template for all pages
 module.exports.register = function(hbs) {
     hbs.registerHelper('displayDogs', function (dog) {
         return new hbs.SafeString(

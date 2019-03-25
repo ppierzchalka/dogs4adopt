@@ -4,11 +4,16 @@ const fs = require('fs'),
   hbs = require('hbs'),
   registrar = require('handlebars-registrar'),
   app = express(),
-  port = process.env.PORT || 3000,
-  generateShelterPages = require('./helpers/generateShelterPages');
+  port = process.env.PORT || 3000;
 
-const variables = require('./helpers/variables'),
-  homeRouter = require('./routers/home'),
+  // Function which generates menu links
+  const generateShelterPages = require('./helpers/generateShelterPages');
+
+  // Global Variables to use
+  const variables = require('./helpers/variables');
+
+  // ROUTERS
+  const homeRouter = require('./routers/home'),
   aboutRouter = require('./routers/about'),
   searchRouter = require('./routers/search'),
   listRouter = require('./routers/list'),
@@ -24,17 +29,24 @@ const variables = require('./helpers/variables'),
 
   // filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers. This has to be fixed
 
+  // Sets global variables to use in multiple functions
   app.set('variables', variables)
+
+  // Sets data from page scraper to use in multiple places
   app.set('data', data)
   app.set('view engine', 'hbs')
+
+  // Sets folder to be accesible from url
   app.use(express.static(path.join(__dirname, '/public')))
 
+  // Routers registration
   app.use(aboutRouter)
   app.use(homeRouter)
   app.use(searchRouter)
   app.use(listRouter)
   app.use(mapRouter)
 
+  //Handlebars templates and helpers registration
 registrar(hbs, {
   helpers: './helpers/hbs-helpers/*.js',
   partials: ['./views/partials/*.{hbs,js}']

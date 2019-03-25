@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 
+//Sets about page url
 router.get('/about', (req, res) => {
     const variables = req.app.get('variables');
     res.render('index.hbs', {
