@@ -1,136 +1,46 @@
-const fs = require('fs');
-const express = require('express');
-const path = require("path");
-const hbs = require('hbs');
-const app = express();
-const port = process.env.PORT || 3000;
+const fs = require('fs'),
+  express = require('express'),
+  path = require("path"),
+  hbs = require('hbs'),
+  registrar = require('handlebars-registrar'),
+  app = express(),
+  port = process.env.PORT || 3000,
+  generateShelterPages = require('./helpers/generateShelterPages');
 
-app.use(express.static(path.join(__dirname, '/public')));
-hbs.registerPartials(__dirname + '/views/partials');
-app.set('view engine', 'hbs');
-const menuPaths = [{
-  title: 'Strona Głowna',
-  path: '/'
-}, {
-  title: 'Informacje',
-  path: '/about'
-},
-{
-  title: 'Szukaj na mapie',
-  path: '/map'
-}];
-const menuShelters = [];
-const shelters = ['Łódź', 'Jelenia Góra', 'Dłużyna Górna'];
+const variables = require('./helpers/variables'),
+  homeRouter = require('./routers/home'),
+  aboutRouter = require('./routers/about'),
+  searchRouter = require('./routers/search'),
+  listRouter = require('./routers/list'),
+  mapRouter = require('./routers/map');
 
-// comment this out to disable page scraping
-// setInterval(() => {
-//   merger.readAndMerge();
-//   console.log('Reading and merging')
-// }, 604800000) // week = 604800000
+  // comment this out to disable page scraping
+  // setInterval(() => {
+  //   merger.readAndMerge();
+  //   console.log('Reading and merging')
+  // }, 604800000) // week = 604800000
 
-const data = JSON.parse(fs.readFileSync('./public/complete.json')).filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
+  const data = JSON.parse(fs.readFileSync('./public/complete.json')).filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
 
-// filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers. This has to be fixed
+  // filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers. This has to be fixed
 
-hbs.registerHelper('displayDogs', function (dog) {
-  return new hbs.SafeString(
-    `<a href=${this.link} target="_blank">
-    <h3 class="name">${this.name}</h3>
-    <div class="img-crop">
-    <img class="dog-img" src=${this.image} alt=${this.name} onerror="this.onerror=null;this.src='/images/noimage.png';"/>
-    </div>
-    <p class="location">Lokalizacja: ${this.location}</p>
-    <button class="view">Zobacz</button>
-    </a>`
-  );
+  app.set('variables', variables)
+  app.set('data', data)
+  app.set('view engine', 'hbs')
+  app.use(express.static(path.join(__dirname, '/public')))
+
+  app.use(aboutRouter)
+  app.use(homeRouter)
+  app.use(searchRouter)
+  app.use(listRouter)
+  app.use(mapRouter)
+
+registrar(hbs, {
+  helpers: './helpers/hbs-helpers/*.js',
+  partials: ['./views/partials/*.{hbs,js}']
 });
 
-hbs.registerHelper('listDogs', function(dog) {
-  return new hbs.SafeString(
-    `<div class="dog-elem" id="${this.name}" data-location=${this.dataLocation}>
-    <img class="dog-img" src=${this.image} alt=${this.name} onerror="this.onerror=null;this.src='/images/noimage.png';"/>
-    <h3 class="name">${this.name}</h3>
-    <p class="location">Lokalizacja: ${this.location}</p>
-    <a href=${this.link} target="_blank">Zobacz ogłoszenie</a>
-    </div>`
-    // <a href=${this.link} target="_blank">Zobacz</a>
-  )
-});
-
-function generateShelterPages(list) {
-  list.forEach(shelter => {
-    menuShelters.push({
-      title: shelter,
-      path: `/${encodeURIComponent(shelter)}`
-    });
-    app.get(`/${encodeURIComponent(shelter)}`, (req, res) => {
-
-      res.render('index.hbs', {
-        pageTitle: `Schronisko ${shelter}`,
-        pathToRender: 'shelter',
-        menu: menuPaths,
-        shelters: menuShelters,
-        dogs: data.filter(dog => dog.location === shelter),
-      });
-    });
-  });
-}
-
-app.get('/', (req, res) => {
-  res.render('index.hbs', {
-    pageTitle: 'Dogs4dopt',
-    pathToRender: 'homepage',
-    menu: menuPaths,
-    shelters: menuShelters,
-    dogs: data.sort(() => .5 - Math.random()).slice(0, 4)
-  });
-});
-
-app.get('/about', (req, res) => {
-  res.render('index.hbs', {
-    pageTitle: 'Informacje',
-    pathToRender: 'about',
-    menu: menuPaths,
-    shelters: menuShelters
-  });
-});
-
-app.get('/search', function (req, res) {
-  res.render('index.hbs', {
-    pageTitle: 'Wyniki Wyszukiwania',
-    pathToRender: 'search',
-    menu: menuPaths,
-    shelters: menuShelters,
-    dogs: data.filter(item => item.name.toLowerCase().includes(req.query['name'].toLowerCase()))
-  });
-});
-
-app.get('/all', (req, res) => {
-  res.render('index.hbs', {
-    pageTitle: `Wszystkie zwierzęta`,
-    pathToRender: 'shelter',
-    menu: menuPaths,
-    shelters: menuShelters,
-    dogs: data,
-  });
-});
-
-app.get('/map', (req, res) => {
-  res.render('index.hbs', {
-    pageTitle: `Wszystkie zwierzęta`,
-    pathToRender: 'map',
-    menu: menuPaths,
-    shelters: menuShelters,
-    dogs: data,
-  });
-});
-
-app.get('/api', (req, res, next) => {
-  const data = JSON.parse(fs.readFileSync('./public/complete.json'));
-  res.json(data);
-});
-
-generateShelterPages(shelters);
+generateShelterPages(app, variables.shelters, variables.menuShelters, variables.menuPaths, data);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
