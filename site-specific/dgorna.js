@@ -1,3 +1,6 @@
+// to be adjusted to new scraping method
+
+
 const fs = require('fs');
 const rp = require('request-promise');
 const $ = require('cheerio');

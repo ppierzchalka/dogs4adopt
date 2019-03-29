@@ -3,6 +3,7 @@ const fs = require('fs'),
   path = require("path"),
   hbs = require('hbs'),
   registrar = require('handlebars-registrar'),
+  merger = require('./file-merger.js'),
   app = express(),
   port = process.env.PORT || 3000;
 
@@ -19,15 +20,17 @@ const fs = require('fs'),
   listRouter = require('./routers/list'),
   mapRouter = require('./routers/map');
 
-  // comment this out to disable page scraping
+  // // comment this out to disable page scraping
   // setInterval(() => {
   //   merger.readAndMerge();
   //   console.log('Reading and merging')
   // }, 604800000) // week = 604800000
 
-  const data = JSON.parse(fs.readFileSync('./public/complete.json')).filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
-
-  // filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers. This has to be fixed
+  // This reads the file
+  // filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers.
+  //This has to be fixed
+  const data = JSON.parse(fs.readFileSync('./public/complete.json'))
+  .filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
 
   // Sets global variables to use in multiple functions
   app.set('variables', variables)

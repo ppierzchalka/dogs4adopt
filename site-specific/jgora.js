@@ -1,3 +1,6 @@
+// to be adjusted to new scraping method
+
+
 const fs = require('fs');
 const rp = require('request-promise');
 const $ = require('cheerio');
@@ -28,7 +31,7 @@ function getData() {
                 dataLocation: 'jgora'
               })
             })
-            fs.writeFileSync('./partial-json/dogs-jgora.json', JSON.stringify(dogs));
+            fs.writeFileSync('../partial-json/dogs-jgora.json', JSON.stringify(dogs));
           })
       })
     })
