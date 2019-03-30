@@ -1,11 +1,11 @@
 const express = require('express');
-const Dog = require('../models/dog')
+const Dog = require('../models/dog');
 const router = new express.Router();
 
 // Sets homepage url
 router.get('/', async (req, res) => {
     const variables = req.app.get('variables')
-    const data = await Dog.findRandom({}, {}, {
+    await Dog.findRandom({}, {}, {
         limit: 4
     }, function (error, results) {
         if (!error) {

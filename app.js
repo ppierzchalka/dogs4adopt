@@ -19,7 +19,8 @@ const fs = require('fs'),
   aboutRouter = require('./routers/about'),
   searchRouter = require('./routers/search'),
   listRouter = require('./routers/list'),
-  mapRouter = require('./routers/map');
+  mapRouter = require('./routers/map'),
+  apiRouter = require('./routers/api');
 
 
   // // comment this out to disable page scraping
@@ -46,6 +47,7 @@ const fs = require('fs'),
   app.use(searchRouter)
   app.use(listRouter)
   app.use(mapRouter)
+  app.use(apiRouter)
 
   //Handlebars templates and helpers registration
 registrar(hbs, {
