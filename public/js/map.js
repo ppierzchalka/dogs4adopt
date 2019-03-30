@@ -57,7 +57,7 @@ function initMap() {
                     map: map,
                     animation: google.maps.Animation.DROP,
                     title: sheltersCoords[key].name,
-                    icon: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red${sortedDogs[key].length}.png`,
+                    icon: sortedDogs[key].length > 100 ? 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red+.png' : `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red${sortedDogs[key].length}.png`,
                     id: key
                 });
                 const infowindow = new google.maps.InfoWindow({
