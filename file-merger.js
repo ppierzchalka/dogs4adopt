@@ -1,4 +1,7 @@
-const fs = require('fs');
+const mongoose = require('mongoose')
+const Dog = require('./models/dog')
+const fs = require('fs')
+require('./db/mongoose')
 
 // Shelter page specific scrapers registration
 const lodz = require('./site-specific/lodz.js');
@@ -12,8 +15,6 @@ async function readAndMerge() {
 
   data = data.concat.apply([], [lodzData, dgornaData])
 
-  data => fs.writeFileSync('./public/complete.json', JSON.stringify(data))
-
   //Get date and write scrape log
   let today = `Scrape: ${new Date().toString()}
 `;
@@ -22,5 +23,19 @@ async function readAndMerge() {
   return data
 }
 
-readAndMerge().then(data => console.log(data))
+const saveDogs = async function(dogsData) {
+  mongoose.connection.db.dropDatabase();
+  Dog.insertMany(dogsData, function(error, docs){
+    if (error) {
+      console.log(error);
+    }
+    console.log(`Saved ${docs.length} documents do database`);
+    // mongoose.connection.close(function () {
+    //   console.log('Mongoose disconnected on app termination');
+    //   process.exit(0);
+    // });
+  })
+}
+
 module.exports.readAndMerge = readAndMerge;
+module.exports.saveDogs = saveDogs;

@@ -14,7 +14,7 @@ const variables = {
     ],
     // Variable to store shelters menu
     menuShelters: [],
-    shelters: ['Łódź', 'Jelenia Góra', 'Dłużyna Górna']
+    shelters: ['Łódź', 'Dłużyna Górna']
 }
 
 module.exports = variables

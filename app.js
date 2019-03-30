@@ -6,6 +6,7 @@ const fs = require('fs'),
   merger = require('./file-merger.js'),
   app = express(),
   port = process.env.PORT || 3000;
+  require('./db/mongoose')
 
   // Function which generates menu links
   const generateShelterPages = require('./helpers/generateShelterPages');
@@ -20,31 +21,28 @@ const fs = require('fs'),
   listRouter = require('./routers/list'),
   mapRouter = require('./routers/map');
 
+
   // // comment this out to disable page scraping
+  // merger.readAndMerge().then(dogsData => merger.saveDogs(dogsData));
   // setInterval(() => {
-  //   merger.readAndMerge();
+  //   readAndMerge().then(dogsData => saveDogs(dogsData));
   //   console.log('Reading and merging')
   // }, 604800000) // week = 604800000
 
-  // This reads the file
-  // filter with !dog.name.includes excludes dogs with accented characters in names due to not supporting these characters by page scrappers.
-  //This has to be fixed
-  const data = JSON.parse(fs.readFileSync('./public/complete.json'))
-  .filter(dog => !dog.name.includes("&#xFFFD")).sort(() => .5 - Math.random()).slice(0, 20);
 
   // Sets global variables to use in multiple functions
   app.set('variables', variables)
 
   // Sets data from page scraper to use in multiple places
-  app.set('data', data)
+  // app.set('data', data)
   app.set('view engine', 'hbs')
 
   // Sets folder to be accesible from url
   app.use(express.static(path.join(__dirname, '/public')))
 
   // Routers registration
-  app.use(aboutRouter)
   app.use(homeRouter)
+  app.use(aboutRouter)
   app.use(searchRouter)
   app.use(listRouter)
   app.use(mapRouter)
@@ -55,7 +53,7 @@ registrar(hbs, {
   partials: ['./views/partials/*.{hbs,js}']
 });
 
-generateShelterPages(app, variables.shelters, variables.menuShelters, variables.menuPaths, data);
+generateShelterPages(app, variables.shelters, variables.menuShelters, variables.menuPaths);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
