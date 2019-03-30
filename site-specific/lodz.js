@@ -22,7 +22,7 @@ const getDogs = function (data, arr) {
 async function getData() {
   let urls = ["http://www.schronisko-lodz.pl/?p=adopcje&a=search&type=pies&order=added_desc"];
   let dogs = [];
-  const data = await rp("http://www.schronisko-lodz.pl/?p=adopcje&a=search&type=pies&order=added_desc");
+  const data = await rp(urls[0]);
 
   getLinks(data, urls)
 

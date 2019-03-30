@@ -1,41 +1,37 @@
-// to be adjusted to new scraping method
-
-
-const fs = require('fs');
 const rp = require('request-promise');
 const $ = require('cheerio');
 
-function getData() {
-  rp("http://schroniskodg.pl/psy-do-adopcji")
-    .then(html => {
-      let urls = ["http://schroniskodg.pl/psy-do-adopcji"];
+const getLinks = function(data, array) {
+  $('a.pagenav', data).each(function (i, elem) {
+    if (array.indexOf("http://schroniskodg.pl" + $(this).attr('href')) === -1) {
+      array.push("http://schroniskodg.pl" + $(this).attr('href'));
+    }
+  })
+}
 
-      $('a.pagenav', html).each(function(i, elem) {
-        if (urls.indexOf("http://schroniskodg.pl" + $(this).attr('href')) === -1) {
-          urls[i+1] = "http://schroniskodg.pl" + $(this).attr('href');
-        }
-      })
-      return urls
+const getDogs = function (data, arr) {
+  $('.itemContainer', data).each(function (elem) {
+    arr.push({
+      name: $('img', this).attr('alt'),
+      image: "http://schroniskodg.pl" + $('img', this).attr('src'),
+      link: "http://schroniskodg.pl" + $('a', this).attr('href'),
+      location: "Dłużyna Górna",
+      dataLocation: 'dgorna'
     })
-    .then(urls => {
-      let dogs = [];
-      urls.forEach(url => {
-        rp(url)
-          .then(html => {
-            $('.itemContainer', html).each(function(elem) {
-              dogs.push({
-                name: $('img', this).attr('alt'),
-                image: "http://schroniskodg.pl" + $('img', this).attr('src'),
-                link: "http://schroniskodg.pl" + $('a', this).attr('href'),
-                location: "Dłużyna Górna",
-                dataLocation: 'dgorna'
-              })
-            })
-            fs.writeFileSync('./partial-json/dogs-dgorna.json', JSON.stringify(dogs));
-          })
-      })
-    })
-    .catch(err => console.log(err))
+  })
+}
+
+async function getData() {
+  let urls = ["http://schroniskodg.pl/psy-do-adopcji"];
+  let dogs = [];
+  const data = await rp(urls[0])
+
+  getLinks(data, urls)
+
+  const responses = await Promise.all(urls.map(url => rp(url)))
+
+  responses.map(html => getDogs(html, dogs))
+  return dogs
 }
 
 module.exports.getData_dgorna = getData;
