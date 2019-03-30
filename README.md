@@ -7,11 +7,11 @@ This NodeJS app scrapes data from animal shelters in Poland and serves this data
 ## Installation & Running
 
 - Clone this repo
-- Provide your api key in views/partials/footer.hbs in google maps link
+- Provide your api key in `views/partials/footer.hbs` in google maps link
 - provide link to your mongodb database in db/mongoose.js
 - uncomment proper command in app.js to scrape data to your database (please run this one time and then comment out again)
-- Run with 'npm run start' command
-- visit 'localhost:3000' to see the app
+- Run with `npm run start` command
+- visit `localhost:3000` to see the app
 
 ## API
 
