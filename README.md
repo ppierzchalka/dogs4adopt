@@ -18,7 +18,9 @@ This NodeJS app scrapes data from animal shelters in Poland and serves this data
 This app has api feature, api routes are listed below:
 
 - `/api/all` gets all dogs from database
-- `/api/shelter/[shelter]` gets dogs from certain `shelter`, currently working shelters are lodz (Łódź) and dgorna (Dłużyna Górna)
+- `/api/shelter/[shelter]` gets dogs from certain `shelter`, currently working shelters are:
+  - `lodz` (Łódź)
+  - `dgorna` (Dłużyna Górna)
 - `/api/id/[id]` gets certain dog by it's `id`
 - `/api/name/[name]` searches dogs by `name`, or part of it
 - `/api/random/[x]` returns `x` random dogs
