@@ -29,11 +29,6 @@ const saveDogs = async function(dogsData) {
     if (error) {
       console.log(error);
     }
-    console.log(`Saved ${docs.length} documents do database`);
-    // mongoose.connection.close(function () {
-    //   console.log('Mongoose disconnected on app termination');
-    //   process.exit(0);
-    // });
   })
 }
 

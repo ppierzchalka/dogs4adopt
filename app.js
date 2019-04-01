@@ -3,7 +3,6 @@ const fs = require('fs'),
   path = require("path"),
   hbs = require('hbs'),
   registrar = require('handlebars-registrar'),
-  merger = require('./file-merger.js'),
   app = express(),
   port = process.env.PORT || 3000;
   require('./db/mongoose')
@@ -20,16 +19,8 @@ const fs = require('fs'),
   searchRouter = require('./routers/search'),
   listRouter = require('./routers/list'),
   mapRouter = require('./routers/map'),
-  apiRouter = require('./routers/api');
-
-
-  // // comment this out to disable page scraping
-  // merger.readAndMerge().then(dogsData => merger.saveDogs(dogsData));
-  // setInterval(() => {
-  //   readAndMerge().then(dogsData => saveDogs(dogsData));
-  //   console.log('Reading and merging')
-  // }, 604800000) // week = 604800000
-
+  apiRouter = require('./routers/api'),
+  scraperRouter = require('./routers/scraper');
 
   // Sets global variables to use in multiple functions
   app.set('variables', variables)
@@ -48,6 +39,7 @@ const fs = require('fs'),
   app.use(listRouter)
   app.use(mapRouter)
   app.use(apiRouter)
+  app.use(scraperRouter)
 
   //Handlebars templates and helpers registration
 registrar(hbs, {
