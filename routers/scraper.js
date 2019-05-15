@@ -1,13 +1,14 @@
 const express = require('express');
-const merger = require('../file-merger');
+const saver = require('../mongodb-saver');
 const router = new express.Router();
 
 //Sets about page url
-router.get('/scrape/websited/hx7ghwENR9ADU*hX7y&EVA^5SQ9u7HRw!59cr', async (req, res) => {
+router.get('/scrape', async (req, res) => {
     try {
-        const merged = await merger.readAndMerge();
-        const saved = await merger.saveDogs(merged);
+        const merged = await saver.readAndMerge();
+        const saved = await saver.saveDogs(merged);
         res.send(`Successfully saved documents to database!`)
+        console.log(`Successfully saved documents to database!`)
     } catch (error) {
         res.status(500).send(error)
     }

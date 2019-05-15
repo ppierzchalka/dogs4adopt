@@ -1,10 +1,10 @@
 {
-  "name": "Dogs4Adopt",
+  "name": "dogs4adopt",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon app.js --watch views",
+    "start-dev": "nodemon app.js",
     "start": "node app.js"
   },
   "author": "",
@@ -16,8 +16,8 @@
     "express": "^4.16.4",
     "express-paginate": "^1.0.0",
     "express-search": "^1.0.3",
-    "handlebars-registrar": "^1.5.2",
-    "hbs": "^4.0.3",
+    "html-entities": "^1.2.1",
+    "iconv-lite": "^0.4.24",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.16",
     "mongoose-simple-random": "^0.4.1",
@@ -32,9 +32,6 @@
     "browser-sync": "^2.26.3",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.0",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.4",
     "gulp-watch": "^5.0.1"
   }
 }

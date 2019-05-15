@@ -4,7 +4,6 @@ const mongoose = require('mongoose'),
 const dogSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
         trim: true,
     },
     image: {
@@ -13,17 +12,14 @@ const dogSchema = new mongoose.Schema({
     },
     link: {
         type: String,
-        required: true,
         trim: true,
     },
     location: {
         type: String,
-        required: true,
         trim: true,
     },
     dataLocation: {
         type: String,
-        required: true,
         trim: true,
     }
 });

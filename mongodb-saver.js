@@ -4,8 +4,8 @@ const fs = require('fs')
 require('./db/mongoose')
 
 // Shelter page specific scrapers registration
-const lodz = require('./site-specific/lodz.js');
 const dgorna = require('./site-specific/dgorna.js');
+const lodz = require('./site-specific/lodz.js');
 
 // Runs page scrapers
 async function readAndMerge() {
@@ -18,7 +18,7 @@ async function readAndMerge() {
   //Get date and write scrape log
   let today = `Scrape: ${new Date().toString()}
 `;
-  fs.appendFileSync('./public/dates.log', today);
+  fs.appendFileSync('./logs/dates.log', today);
 
   return data
 }
