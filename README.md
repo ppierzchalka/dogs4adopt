@@ -1,17 +1,14 @@
-![LOGO](https://raw.githubusercontent.com/Websited/dogs4adopt/master/public/images/logo.png)
-
 ## Intro
 
-This NodeJS app scrapes data from animal shelters in Poland and serves this data in user-friendly GUI. The goal is to provide as much information as possible to people who wants to adopt a dog.
+This NodeJS app scrapes data from animal shelters in Poland and serves this data as API. The goal is to provide as much information as possible to people who wants to adopt a dog.
 
 ## Installation & Running
 
 - Clone this repo
-- Provide your api key in `views/partials/footer.hbs` in google maps link
 - provide link to your mongodb database in `db/mongoose.js`
 - uncomment proper command in app.js to scrape data to your database (please run this one time and then comment out again)
 - Run with `npm run start` command
-- visit `localhost:3000` to see the app
+- visit `localhost:3000` to see the app use paths below to read data from DB
 
 ## API
 
@@ -29,9 +26,7 @@ This app has api feature, api routes are listed below:
 ## Features to implement
 
 - Add more shelters
-- Use more flexible front-end framework instead of node+handlebars
-- Map geolocalization
-- Map filters
+- DB pagination
 
 ## Contributing
 
