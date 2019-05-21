@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
-const Dog = require('./models/dog')
-const fs = require('fs')
-require('./db/mongoose')
+const mongoose = require('mongoose');
+const fs = require('fs');
+const Dog = require('./models/dog');
+require('./db/mongoose');
 
 // Shelter page specific scrapers registration
 const dgorna = require('./site-specific/dgorna.js');
@@ -16,9 +16,7 @@ async function readAndMerge() {
   data = data.concat.apply([], [lodzData, dgornaData])
 
   //Get date and write scrape log
-  let today = `Scrape: ${new Date().toString()}
-`;
-  fs.appendFileSync('./logs/dates.log', today);
+  fs.appendFileSync('./logs/dates.log', `Scrape: ${new Date().toString()} /n`);
 
   return data
 }
@@ -28,6 +26,7 @@ const saveDogs = async function(dogsData) {
   Dog.insertMany(dogsData, function(error, docs){
     if (error) {
       console.log(error);
+    fs.appendFileSync('./logs/errors.log', `${new Date()}: Error: ${error} \n`);
     }
   })
 }

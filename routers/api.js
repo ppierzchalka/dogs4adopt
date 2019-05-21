@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const Dog = require('../models/dog');
 const router = new express.Router();
 
@@ -22,8 +23,9 @@ router.get('/api/shelter/:shelterName', async (req, res) => {
         }
 
         res.send(dog)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
+        fs.appendFileSync('./logs/errors.log', `${new Date()}: Error: ${error} \n`);
     }
 })
 
@@ -37,8 +39,9 @@ router.get('/api/id/:id', async (req, res) => {
         }
 
         res.send(dog)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
+        fs.appendFileSync('./logs/errors.log', `${new Date()}: Error: ${error} \n`);
     }
 })
 
@@ -55,8 +58,9 @@ router.get('/api/name/:dogName', async (req, res) => {
         }
 
         res.send(dog)
-    } catch (e) {
+    } catch (error) {
         res.status(500).send()
+        fs.appendFileSync('./logs/errors.log', `${new Date()}: Error: ${error} \n`);
     }
 })
 
@@ -72,6 +76,7 @@ router.get('/api/random/:count', async (req, res) => {
     })
     } catch (error) {
         res.status(500).send()
+        fs.appendFileSync('./logs/errors.log', `${new Date()}: Error: ${error} \n`);
     }
 })
 
