@@ -7,6 +7,8 @@ require('./db/mongoose');
 const dgorna = require('./site-specific/dgorna.js');
 const lodz = require('./site-specific/lodz.js');
 const jgora = require('./site-specific/jgora.js');
+const ilawa = require('./site-specific/ilawa.js');
+const gdynia = require('./site-specific/gdynia.js');
 
 // Runs page scrapers
 async function readAndMerge() {
@@ -14,8 +16,10 @@ async function readAndMerge() {
   const lodzData = await lodz.getData_lodz(); // returns array of dogs
   const dgornaData = await dgorna.getData_dgorna();
   const jgoraData = await jgora.getData_jgora();
+  const ilawaData = await ilawa.getData_ilawa();
+  const gdyniaData = await gdynia.getData_gdynia();
 
-  data = data.concat.apply([], [lodzData, dgornaData, jgoraData])
+  data = data.concat.apply([], [lodzData, dgornaData, jgoraData,ilawaData,gdyniaData])
 
   //Get date and write scrape log
   fs.appendFileSync('./logs/dates.log', `Scrape: ${new Date().toString()} /n`);

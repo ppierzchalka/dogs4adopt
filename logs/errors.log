@@ -3,3 +3,7 @@ Tue May 21 2019 19:25:04 GMT+0200 (GMT+02:00): Error: MongoError: Authentication
 Tue May 21 2019 19:25:07 GMT+0200 (GMT+02:00): Error: MongoError: Authentication failed. 
 Tue May 21 2019 19:31:05 GMT+0200 (GMT+02:00): Error: MongoParseError: Invalid connection string 
 Tue May 21 2019 19:32:05 GMT+0200 (GMT+02:00): Error: MongoParseError: Invalid connection string 
+Tue May 21 2019 21:32:55 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_dgorna is not a function 
+Tue May 21 2019 21:34:05 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_dgorna is not a function 
+Tue May 21 2019 21:34:19 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_dgorna is not a function 
+Wed May 22 2019 00:06:07 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_ilawa is not a function 
