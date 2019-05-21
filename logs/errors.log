@@ -2,3 +2,4 @@ Tue May 21 2019 19:25:01 GMT+0200 (GMT+02:00): Error: MongoError: Authentication
 Tue May 21 2019 19:25:04 GMT+0200 (GMT+02:00): Error: MongoError: Authentication failed. 
 Tue May 21 2019 19:25:07 GMT+0200 (GMT+02:00): Error: MongoError: Authentication failed. 
 Tue May 21 2019 19:31:05 GMT+0200 (GMT+02:00): Error: MongoParseError: Invalid connection string 
+Tue May 21 2019 19:32:05 GMT+0200 (GMT+02:00): Error: MongoParseError: Invalid connection string 
