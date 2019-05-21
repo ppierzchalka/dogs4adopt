@@ -13,7 +13,7 @@ const getDogs = function (data, arr) {
   $('.category-psy_do_adopcji', data).each(function (elem) {
     arr.push({
       name: $('.entry-title', this).text().replace(/\s/g,''),
-      image:$('img', this).attr('src').replace("-150x100", "").replace("-150x99", ""),
+      image:$('img', this).attr('src').replace("-150x100", "").replace("-150x99", "").replace("-100x150", ""),
       link: $('.more-link', this).attr('href'),
       location: "Gdynia",
       dataLocation: 'gdynia'
