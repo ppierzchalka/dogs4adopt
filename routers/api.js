@@ -4,9 +4,11 @@ const Dog = require('../models/dog');
 const router = new express.Router();
 
 // Sets all dogs list page url
-router.get('/api/all', async (req, res) => {
+router.get('/api/all/:limit/:page', async (req, res) => {
+    const _limit = req.params.limit
+    const _page = req.params.page
     try {
-        const data = await Dog.find({})
+        const data = await Dog.paginate({}, {limit: _limit, page: _page});
         res.send(data);
     } catch (error) {
         res.status(500).send()
