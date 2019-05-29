@@ -7,3 +7,5 @@ Tue May 21 2019 21:32:55 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_d
 Tue May 21 2019 21:34:05 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_dgorna is not a function 
 Tue May 21 2019 21:34:19 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_dgorna is not a function 
 Wed May 22 2019 00:06:07 GMT+0200 (GMT+02:00): Error: TypeError: jgora.getData_ilawa is not a function 
+Wed May 29 2019 21:21:09 GMT+0200 (GMT+02:00): Error: ReferenceError: dog is not defined 
+Wed May 29 2019 21:21:12 GMT+0200 (GMT+02:00): Error: ReferenceError: dog is not defined 
