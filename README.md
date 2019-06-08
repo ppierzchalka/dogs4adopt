@@ -14,27 +14,24 @@ This NodeJS app scrapes data from animal shelters in Poland and serves this data
 
 This app has api feature, api routes are listed below:
 
-- `/api/all` gets all dogs from database, returns array of dogs if no parameters were provided, optional parameters:
-  - limit - to limit how many dogs display per page,
-  - page - to display page by given number,
-  - example: `/api/all?limit=5&page=15`
-- `/api/shelterNames` - displays list of objects with shelters data, each object includes:
-  - `location` - string with full name of certain sheter,
-  - `dataLocation` - string which can be used to find dogs from certain shelter in path below 
-- `/api/shelter/[dataLocation]` gets dogs from certain shelter, get dataLocation values from previous path, optional parameters:
-  - limit - to limit how many dogs display per page,
-  - page - to display page by given number,
-  - example: `/api/shelter/lodz?limit=5&page=15`
-- `/api/id/[id]` returns certain dog searched by it's `id`
-- `/api/name/[name]` searches dogs by `name`, or part of it, returns array of dogs if no parameters were provided, optional parameters:
-  - limit - to limit how many dogs display per page,
-  - page - to display page by given number,
-  - example: `/api/name/burek?limit=5&page=15`
-- `/api/random/[x]` returns `x` random dogs
+- `/api/shelters` returns array of objects, each object has shelter name `location`, and shelter string `dataLocation`, which is used in API below,
+- `/api/shelters/[dataLocation]` returns object with dogs from certain shelter. Additional queries available,
+- `/api/dogs` returns object with all dogs in database. Additional queries available,
+- `/api/dogs/:id` returns one object (dog) of certain ID,
+- `/api/random` - returns random results from all database, 5 by default, use `?count=x` to return `x` results instead
 
-## Optional parameters
+## Additional queries
 
-If both optional parameters are provided (only one parameter won't work), object is returned instead of array. Structure of object include:
+`/api/shelters/[dataLocation]` and `/api/dogs` returns object paginated results of search query. API returns first page, 10 results for page by default. Use following parameters to narrow/adjust search results:
+- `limit` - set limit of results per page (10 by default),
+- `page` - return certain page (1 by default),
+- `name` - pass dog name, or part of dog name to narrow results (case insensitive);
+
+Pass optional parameters like this: `/api/shelters/lodz?name=pa&page=2&limit=5`, parameters can be passed in diffrent order, 1, 2, 3 parameters can be passed.
+
+##Structure of response object
+
+ Structure of object include:
 - `docs` - actual array of results,
 - `totalDocs` - number of results,
 - `limit` - limiter provided in parameter (indicates how many documents are on single page),

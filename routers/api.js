@@ -28,13 +28,16 @@ router.get('/api/shelters/:dataLocation', async (req, res) => {
     let data;
     try {
         if (_dogName) {
-            data = await Dog.find({
+            data = await Dog.paginate({
                 "name": {
                     "$regex": _dogName.toLowerCase(),
                     "$options": "i"
                 },
                 dataLocation: _dataLocation
-            })
+            }, {
+                limit: _limit,
+                page: _page
+            });
         } else {
             data = await Dog.paginate({
                 dataLocation: _dataLocation
@@ -60,12 +63,15 @@ router.get('/api/dogs', async (req, res) => {
     let data;
     try {
         if (_dogName) {
-            data = await Dog.find({
+            data = await Dog.paginate({
                 "name": {
                     "$regex": _dogName.toLowerCase(),
                     "$options": "i"
                 }
-            })
+            }, {
+                limit: _limit,
+                page: _page
+            });
         } else {
             data = await Dog.paginate({}, {
                 limit: _limit,
