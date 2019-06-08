@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'),
     random = require('mongoose-simple-random'),
-    paginate = require('mongoose-paginate-v2');
+    paginate = require('mongoose-paginate-v2'),
+    aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 
 const dogSchema = new mongoose.Schema({
     name: {
@@ -25,7 +26,7 @@ const dogSchema = new mongoose.Schema({
     }
 });
 
-const dogSchemaPlugins = [random, paginate];
+const dogSchemaPlugins = [random, paginate,aggregatePaginate];
 
 dogSchemaPlugins.forEach(plugin => dogSchema.plugin(plugin));
 
