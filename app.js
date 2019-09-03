@@ -5,6 +5,15 @@ const fs = require('fs'),
   port = process.env.PORT || 3000;
   require('./db/mongoose')
 
+  // Allow CORS
+app.all('*', function (req, res, next) {
+  var origin = req.get('origin');
+  res.header('Access-Control-Allow-Origin', origin);
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
   // ROUTERS
   apiRouter = require('./routers/api'),
   scraperRouter = require('./routers/scraper');
